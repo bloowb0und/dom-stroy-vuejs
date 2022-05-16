@@ -1,0 +1,10 @@
+
+.btn {
+    border: none;
+    &-primary {
+        background-color: $primary;
+    }
+    &-secondary {
+        background-color: $secondary;
+    }
+}

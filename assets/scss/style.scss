@@ -1,0 +1,26 @@
+//icon fonts
+@import "../css/ionicons.min.css";
+
+@import "variables";
+@import "mixins";
+@import "common";
+@import "spacing";
+
+@import "header/header";
+@import "header/off-canvas-menu";
+@import "footer/footer";
+@import "components/slider";
+@import "components/buttons";
+@import "components/swiper-navigation";
+@import "components/animation";
+@import "components/banner";
+@import "components/about";
+@import "components/project";
+@import "components/counter";
+@import "components/testimonial";
+@import "components/breadcrumb";
+@import "components/sidebar";
+@import "components/contact";
+@import "components/login-register";
+@import "components/team";
+@import "components/service";
