@@ -8,7 +8,7 @@ router.get('/',async (req, res) => {
     await Database.open('../domstroy.sqlite')
         .then(async db => {
             //const sql = 'SELECT title,desc,image FROM Projects';
-            const sql = `SELECT Requests.fullname,, Requests.phone, Requests.date Projects.title FROM Requests INNER JOIN Projects on Requests.project_id = Projects.id`;
+            const sql = `SELECT Requests.id, Requests.fullname, Requests.phone, Requests.date, Projects.title FROM Requests INNER JOIN Projects on Requests.project_id = Projects.id`;
             let result = await db.all(sql, []);
             //console.log(result)
 
