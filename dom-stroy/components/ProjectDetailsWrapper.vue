@@ -6,7 +6,7 @@
                     <div class="project-detail-banner row g-0">
                         <div class="col-md-5 pb-4 pb-md-0">
                             <div class="single-img">
-                                <img class="img-full" src="/images/project-detail/1-1-370x500.jpg" alt="Project Image">
+                                <img class="img-full" :src="`/images/${project.images_folder}/1-1-370x500.jpg`" alt="Project Image">
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -38,16 +38,14 @@
                     </div>
                     <div class="single-content pt-5 pb-4">
                         <h2 class="title font-size-60 mb-3">{{ project.title }}</h2>
-                        <h3 class="sub-title text-primary mb-4">{{ project.subtitle }}</h3>
+                        <h3 class="sub-title text-primary mb-4">{{ project.desc }}</h3>
                         <h3 class="additional-title mb-4">Резюме проекта</h3>
-                        <p class="short-desc mb-0">{{ project.primaryDesc }}</p>
+                        <p class="short-desc mb-0">{{ project.text1 }}</p>
                     </div>
                     <div class="single-featured row pb-7">
                         <div class="col-lg-4">
                             <div class="featured-content pb-4 pb-lg-0">
-                                <p class="featured-desc mb-4">{{ project.feature1 }}</p>
-                                <p class="featured-desc mb-4">{{ project.feature2 }}</p>
-                                <p class="featured-desc mb-0">{{ project.feature3 }}</p>
+                                <p class="featured-desc mb-4">{{ project.text3 }}</p>
                             </div>
                         </div>
                         <div class="col-lg-8">
@@ -114,19 +112,29 @@
                                 <li>
                                     <a href="#">
                                         Начало:
-                                        <span>{{ project.startDate }}</span>
+                                        <span>{{ project.start_date }}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         Конец:
-                                        <span>{{ project.endDate }}</span>
+                                        <span>{{ project.end_date }}</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+              <div class="sidebar-widget sidebar-download-brochure text-white mb-6">
+                <ul>
+                  <li>
+                    <a href="#">Brochure.PDF</a>
+                  </li>
+                  <li>
+                    <a href="#">Brochure.DOC</a>
+                  </li>
+                </ul>
+              </div>
             </div>
         </div>
     </div>
