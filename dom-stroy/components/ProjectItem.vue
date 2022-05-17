@@ -1,7 +1,7 @@
 <template>
     <div class="project-item">
         <n-link :to="`/project-details/${project.id}`" class="project-img">
-            <img src="/images/project-detail/1-1-370x500.jpg" :alt="project.title">
+            <img :src="`/images/project/medium-size/${project.id}.jpg`" :alt="project.title">
         </n-link>
         <div class="project-content with-boxshadow">
             <span class="sub-title">{{ project.category }}</span>
