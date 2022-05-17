@@ -13,24 +13,24 @@
                             <div class="group-img row g-0 mb-4">
                                 <div class="col-6">
                                     <div class="single-img">
-                                        <img class="img-full" src="/images/project-detail/1-2-226x245.jpg" alt="Project Image">
+                                        <img class="img-full" :src="`/images/${project.images_folder}/1-2-226x245.jpg`" alt="Project Image">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="single-img">
-                                        <img class="img-full" src="/images/project-detail/1-3-222x245.jpg" alt="Project Image">
+                                        <img class="img-full" :src="`/images/${project.images_folder}/1-3-222x245.jpg`" alt="Project Image">
                                     </div>
                                 </div>
                             </div>
                             <div class="group-img row g-0">
                                 <div class="col-7">
                                     <div class="single-img">
-                                        <img class="img-full" src="/images/project-detail/1-4-264x245.jpg" alt="Project Image">
+                                        <img class="img-full" :src="`/images/${project.images_folder}/1-4-264x245.jpg`" alt="Project Image">
                                     </div>
                                 </div>
                                 <div class="col-5">
                                     <div class="single-img">
-                                        <img class="img-full" src="/images/project-detail/1-5-183x245.jpg" alt="Project Image">
+                                        <img class="img-full" :src="`/images/${project.images_folder}/1-5-183x245.jpg`" alt="Project Image">
                                     </div>
                                 </div>
                             </div>
