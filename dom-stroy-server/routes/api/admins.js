@@ -30,21 +30,19 @@ router.post('/',async (req, res) => {
     await Database.open('../domstroy.sqlite')
         .then(async db => {
             const hashedPassword = await hashPassword(req.body.password);
-            const sql = `INSERT INTO Admins(email, password, firstName, lastName) VALUES (?, ?, ?, ?)`;
+            const sql = `INSERT INTO Admins(email, password,firstName,lastName) VALUES (?, ?, ?, ?)`;
             let result = await db.run(sql,[req.body.email, hashedPassword, req.body.firstName, req.body.lastName]);
 
             db.close();
 
             console.log(await verifyPassword(req.body.password, hashedPassword));
 
-            res.status(201).send();
-            res = true;
+            res.status(201).send(true);
         })
         .catch((e) => {
             if(e)
             {
                 console.log(e.message);
-                res = false
                 res.status(500).send();
                 return false;
             }
@@ -67,7 +65,6 @@ router.put('/:id', async (req, res) => {
         .catch((e) => {
             if (e) {
                 console.log(e.message);
-                res = false;
                 res.status(500).send();
                 return false;
             }
@@ -88,7 +85,6 @@ router.delete('/:id', async (req, res) => {
         .catch((e) => {
             if (e) {
                 console.log(e.message);
-                res = false;
                 res.status(500).send();
                 return false;
             }

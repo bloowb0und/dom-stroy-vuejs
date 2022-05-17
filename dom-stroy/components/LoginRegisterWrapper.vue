@@ -100,7 +100,7 @@
 
           if(res)
           {
-            await this.$router.push('/admin');
+            await this.$router.push('/admin-panel');
           } else {
             alert('Введены неверные данные!');
           }
@@ -121,10 +121,11 @@
           }
 
           const res = await AdminService.postAdmin(this.registrationData.email, this.registrationData.password1, this.registrationData.firstName, this.registrationData.lastName);
+          console.log(res);
 
           if(res)
           {
-            await this.$router.push('/admin');
+            await this.$router.push('/admin-panel');
           } else {
             alert('Не удалось зарегистрироваться!');
           }
