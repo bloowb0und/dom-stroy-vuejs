@@ -3,7 +3,7 @@ const axios = require('axios');
 const url = 'http://localhost:5000/api/requests';
 
 
-class RequestsService {
+class RequestService {
     static addRent(fullname, phoneNum, project_id)
     {
         return new Promise(async (resolve, reject) => {
@@ -26,8 +26,7 @@ class RequestsService {
             try {
                 const res = await axios.get(url);
                 const obj = res.data;
-                console.log('res:');
-                console.log(res);
+
                 resolve(obj);
             }
             catch (e)
@@ -58,8 +57,7 @@ class RequestsService {
             try {
                 const res = await axios.put(url + `/${id}`, {fullname:fullname, phone:phone, project_id: project_id});
                 const obj = res.data;
-                console.log('res:');
-                console.log(res);
+
                 resolve(obj);
             }
             catch (e)
@@ -70,4 +68,4 @@ class RequestsService {
     }
 }
 
-export default RequestsService;
+export default RequestService;

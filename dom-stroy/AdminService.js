@@ -42,17 +42,15 @@ class AdminService {
             }
         })
     }
-    static postAdmin(email, password) {
+    static postAdmin(email, password, firstName, lastName) {
         return new Promise(async (resolve, reject) => {
             try {
-                const res = await axios.post(url, {email: email, password: password});
+                const res = await axios.post(url, { email: email, password: password, firstName: firstName, lastName: lastName });
                 const obj = res.data;
                 console.log("res:");
                 console.log(res);
-                const fin = obj.map(project => ({
-                    ...project
-                }))
-                resolve(fin[0]);
+
+                resolve(obj);
             }
             catch (e)
             {
@@ -92,6 +90,22 @@ class AdminService {
             }
             catch (e)
             {
+                reject(e);
+            }
+        })
+    }
+    static checkAdminData(email, password) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const res = await axios.post(url + '/authorize', { email, password });
+
+                resolve(true);
+            }
+            catch (e)
+            {
+                if(e.response.status === 401) {
+                    resolve(false);
+                }
                 reject(e);
             }
         })
