@@ -125,8 +125,17 @@
                         </div>
                     </div>
                 </div>
+<!--              <div>-->
+<!--                <div class="top-bar-right-wrapper">-->
+<!--                  <a @click = "openModalWindow" class="ht-btn ht-btn&#45;&#45;default d-inline-block">Забронировать</a>-->
+<!--                </div>-->
+<!--              </div>-->
+            </div>
               <div class="sidebar-widget sidebar-download-brochure text-white mb-6">
                 <ul>
+                  <li>
+                    <a style="cursor: pointer" @click = "openModalWindow">Забронировать</a>
+                  </li>
                   <li>
                     <a href="#">Brochure.PDF</a>
                   </li>
@@ -137,7 +146,6 @@
               </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -145,5 +153,18 @@
       props: [
           "project",
       ],
+      methods: {
+        openModalWindow() {
+          const el = document.querySelector('.modal-window-notshown');
+          el.classList.add('modal-window')
+          el.classList.remove('modal-window-notshown')
+        },
+        closeModalWindow()
+        {
+          const el = document.querySelector('.modal-window');
+          el.classList.add('modal-window-notshown');
+          el.classList.remove('modal-window');
+        }
+      },
     };
 </script>

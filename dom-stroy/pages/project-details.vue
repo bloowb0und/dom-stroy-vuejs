@@ -13,6 +13,8 @@
 
         <ScrollTop />
 
+        <ModalWindow :project = "project"/>
+
     </div>
 </template>
 
@@ -27,6 +29,7 @@
             ProjectDetailsWrapper: () => import('@/components/ProjectDetailsWrapper'),
             Footer: () => import('@/components/Footer'),
             ScrollTop: () => import('@/components/ScrollTop'),
+            ModalWindow: () => import('@/components/ModalWindow')
         },
 
         data() {

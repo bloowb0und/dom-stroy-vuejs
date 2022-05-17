@@ -79,4 +79,27 @@ router.delete('/:id', async (req, res) => {
         });
 })
 
+//put
+router.put('/:id', async (req, res) => {
+    await Database.open('../domstroy.sqlite')
+        .then(async db => {
+            const sql = 'UPDATE Requests SET fullname = (?), phone = (?), project_id = (?) WHERE id = (?)';
+            let result = await db.run(sql, [req.body.fullname, req.body.phone, req.body.project_id, req.params.id]);
+
+            db.close();
+
+            res.status(201).send();
+            res = true;
+        })
+        .catch(err => {
+            if (err) {
+                console.log(err.message)
+                res = false;
+                res.status(500).send();
+                return false;
+            }
+        });
+})
+
+
 module.exports = router;

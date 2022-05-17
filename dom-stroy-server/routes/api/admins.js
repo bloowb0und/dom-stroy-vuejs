@@ -51,6 +51,28 @@ router.post('/',async (req, res) => {
         })
 })
 
+//PUt
+router.put('/:id', async (req, res) => {
+    await Database.open('../domstroy.sqlite')
+        .then(async db => {
+            const hashedPassword = await hashPassword(req.body.password);
+            const sql = 'UPDATE Admins SET email = (?), password = (?) WHERE id = (?)';
+            let result = await db.run(sql, [req.body.email, hashedPassword, req.params.id]);
+
+            db.close();
+
+            res.status(201).send();
+            res = true;
+        })
+        .catch((e) => {
+            if (e) {
+                console.log(e.message);
+                res = false;
+                res.status(500).send();
+                return false;
+            }
+        });
+})
 //DELETE
 router.delete('/:id', async (req, res) => {
     await Database.open('../domstroy.sqlite')

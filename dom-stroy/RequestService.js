@@ -36,6 +36,38 @@ class RequestsService {
             }
         })
     }
+    static deleteRents(id)
+    {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const res = await axios.delete(url + `/${id}`);
+                const obj = res.data;
+                console.log('res:');
+                console.log(res);
+                resolve(obj);
+            }
+            catch (e)
+            {
+                reject(e);
+            }
+        })
+    }
+    static putRents(id, fullname, phone, project_id)
+    {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const res = await axios.put(url + `/${id}`, {fullname:fullname, phone:phone, project_id: project_id});
+                const obj = res.data;
+                console.log('res:');
+                console.log(res);
+                resolve(obj);
+            }
+            catch (e)
+            {
+                reject(e);
+            }
+        })
+    }
 }
 
 export default RequestsService;
