@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import ProjectService from "~/ProjectService";
+    import ProjectService from "@/ProjectService";
 
     export default {
         components: {

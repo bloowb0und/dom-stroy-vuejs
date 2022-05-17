@@ -88,13 +88,13 @@
                                 <li>
                                     <a href="#">
                                         Площадь:
-                                        <span>{{ project.area }}</span>
+                                        <span>{{ project.area }} м²</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         Бюджет:
-                                        <span>{{ project.budget }}</span>
+                                        <span>{{ project.budget }} ₽</span>
                                     </a>
                                 </li>
                                 <li>
