@@ -42,17 +42,15 @@ class ProjectService {
             }
         })
     }
-    static postProject(title,desc, location, area, budget, architect, contractor, start_date, end_date, text1, text2,text3, images_folder) {
+    static postProject(title,desc, location, area, budget, architect, contractor, start_date, end_date, text1, text2,text3, images_folder, technologies) {
         return new Promise(async (resolve, reject) => {
             try {
-                const res = await axios.post(url, {title : title, desc : desc, technologies: technologies, location: location, area: area, budget: budget, architect: architect, contractor: contractor, start_date: start_date, end_date: end_date, text1: text1, text2: text2, text3: text3, images_folder: images_folder});
+                const res = await axios.post(url, {title,desc, location, area, budget, architect, contractor, start_date, end_date, text1, text2,text3, images_folder, technologies});
                 const obj = res.data;
                 console.log("res:");
                 console.log(res);
-                const fin = obj.map(project => ({
-                    ...project
-                }))
-                resolve(fin[0]);
+
+                resolve(obj);
             }
             catch (e)
             {
@@ -60,17 +58,15 @@ class ProjectService {
             }
         })
     }
-    static putProject(title,desc,image, location, year, places, floors, id) {
+    static putProject(title,desc, location, area, budget, architect, contractor, start_date, end_date, text1, text2,text3, images_folder, technologies, id) {
         return new Promise(async (resolve, reject) => {
             try {
-                const res = await axios.put(url + `/${id}`, {title : title, desc : desc, image: image, location: location, year: year, places: places, floors: floors});
+                const res = await axios.put(url + `/${id}`, {title,desc, location, area, budget, architect, contractor, start_date, end_date, text1, text2,text3, images_folder, technologies});
                 const obj = res.data;
                 console.log("res:");
                 console.log(res);
-                const fin = obj.map(project => ({
-                    ...project
-                }))
-                resolve(fin[0]);
+
+                resolve(obj);
             }
             catch (e)
             {
@@ -85,10 +81,8 @@ class ProjectService {
                 const obj = res.data;
                 console.log("res:");
                 console.log(res);
-                const fin = obj.map(project => ({
-                    ...project
-                }))
-                resolve(fin[0]);
+
+                resolve(obj);
             }
             catch (e)
             {

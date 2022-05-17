@@ -9,11 +9,11 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label>Эл. почта*</label>
-                                    <input type="email" placeholder="Эл. почта">
+                                    <input type="email" placeholder="Эл. почта" v-model="loginData.email">
                                 </div>
                                 <div class="col-12">
                                     <label>Пароль</label>
-                                    <input type="password" placeholder="Пароль">
+                                    <input type="password" placeholder="Пароль" v-model="loginData.password">
                                 </div>
                                 <div class="col-12">
                                     <div class="login-action">
@@ -27,7 +27,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2">
-                                    <button class="btn btn-primary btn-secondary-hover">Войти</button>
+                                    <button class="btn btn-primary btn-secondary-hover" type="button" @click="login">Войти</button>
                                 </div>
                             </div>
                         </div>
@@ -40,26 +40,26 @@
                             <div class="row">
                                 <div class="col-md-6 col-12">
                                     <label>Имя</label>
-                                    <input type="text" placeholder="Имя">
+                                    <input type="text" placeholder="Имя" v-model="registrationData.firstName">
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Фамилия</label>
-                                    <input type="text" placeholder="Фамилия">
+                                    <input type="text" placeholder="Фамилия" v-model="registrationData.lastName">
                                 </div>
                                 <div class="col-md-12">
                                     <label>Эл. почта*</label>
-                                    <input type="email" placeholder="Эл. почта">
+                                    <input type="email" placeholder="Эл. почта" v-model="registrationData.email">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Пароль</label>
-                                    <input type="password" placeholder="Пароль">
+                                    <input type="password" placeholder="Пароль" v-model="registrationData.password1">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Подтвердите пароль</label>
-                                    <input type="password" placeholder="Подтвердите пароль">
+                                    <input type="password" placeholder="Подтвердите пароль" v-model="registrationData.password2">
                                 </div>
                                 <div class="col-12 mt-3">
-                                    <button class="btn btn-primary btn-secondary-hover">Зарегистрироваться</button>
+                                    <button class="btn btn-primary btn-secondary-hover" type="button" @click="register">Зарегистрироваться</button>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,64 @@
 </template>
 
 <script>
-    export default {
+    import AdminService from "~/AdminService";
 
+    export default {
+      data() {
+        return {
+          loginData: {
+            email: '',
+            password: ''
+          },
+          registrationData: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password1: '',
+            password2: ''
+          }
+        }
+      },
+      methods: {
+        async login() {
+          if(!this.loginData.email || !this.loginData.password) {
+            alert('Почта или пароль невалидны!');
+            return;
+          }
+
+          const res = await AdminService.checkAdminData(this.loginData.email, this.loginData.password);
+
+          if(res)
+          {
+            await this.$router.push('/admin');
+          } else {
+            alert('Введены неверные данные!');
+          }
+
+        },
+        async register() {
+          if(!this.registrationData.email
+              || !this.registrationData.password1
+              || !this.registrationData.password2
+              || !this.registrationData.firstName
+              || !this.registrationData.lastName) {
+            alert('Введите валидные данные!');
+            return;
+          }
+
+          if(this.registrationData.password1 !== this.registrationData.password2) {
+            alert('Введенные пароли не одинаковые!');
+          }
+
+          const res = await AdminService.postAdmin(this.registrationData.email, this.registrationData.password1, this.registrationData.firstName, this.registrationData.lastName);
+
+          if(res)
+          {
+            await this.$router.push('/admin');
+          } else {
+            alert('Не удалось зарегистрироваться!');
+          }
+        }
+      },
     };
 </script>

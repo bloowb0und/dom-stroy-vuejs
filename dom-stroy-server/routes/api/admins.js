@@ -30,8 +30,8 @@ router.post('/',async (req, res) => {
     await Database.open('../domstroy.sqlite')
         .then(async db => {
             const hashedPassword = await hashPassword(req.body.password);
-            const sql = `INSERT INTO Admins(email, password) VALUES (?, ?)`;
-            let result = await db.run(sql,[req.body.email, hashedPassword]);
+            const sql = `INSERT INTO Admins(email, password, firstName, lastName) VALUES (?, ?, ?, ?)`;
+            let result = await db.run(sql,[req.body.email, hashedPassword, req.body.firstName, req.body.lastName]);
 
             db.close();
 
@@ -94,6 +94,39 @@ router.delete('/:id', async (req, res) => {
             }
         });
 })
+
+router.post('/authorize',async (req, res) => {
+    await Database.open('../domstroy.sqlite')
+        .then(async db => {
+            const sql = `SELECT * FROM Admins WHERE email = (?)`;
+            let result = await db.all(sql, [req.body.email]);
+
+            db.close();
+
+            if(result.length < 1) {
+                res.status(401).send();
+                return;
+            }
+
+            const verif = await verifyPassword(req.body.password, result[0].password);
+
+            if(!verif) {
+                res.status(401).send();
+                return;
+            }
+
+            res.status(200).send();
+        })
+        .catch((e) => {
+            if(e)
+            {
+                console.log(e.message);
+
+                res.status(500).send();
+                return false;
+            }
+        });
+});
 
 
 //hash
