@@ -23,6 +23,7 @@
 
 <script>
 import RequestService from "~/RequestService";
+import LogsService from "@/LogsService";
 
 export default {
   name: "Request",
@@ -31,13 +32,16 @@ export default {
     'date',
     'title',
     'fullname',
-    'phone'
+    'phone',
+    'adminId',
   ],
   methods: {
     async deleteRequest() {
       await RequestService.deleteRents(this.id);
+      console.log(this.adminId);
+      await LogsService.postLog(this.adminId, `Deleted ${this.id} request.`);
       this.$router.go();
-    }
+    },
   },
 }
 </script>

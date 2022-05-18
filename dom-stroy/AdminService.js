@@ -2,7 +2,6 @@ const axios = require('axios');
 
 const url = 'http://localhost:5000/api/admins';
 
-
 class AdminService {
     static getAdmins()
     {
@@ -42,10 +41,28 @@ class AdminService {
             }
         })
     }
-    static postAdmin(email, password, firstName, lastName) {
+    static getAdminsEmail(email) {
         return new Promise(async (resolve, reject) => {
             try {
-                const res = await axios.post(url, { email: email, password: password, firstName: firstName, lastName: lastName });
+                const res = await axios.post(url + `/getAdmin`, { email });
+                const obj = res.data;
+                console.log("res:");
+                console.log(res);
+                const fin = obj.map(project => ({
+                    ...project
+                }))
+                resolve(fin[0]);
+            }
+            catch (e)
+            {
+                reject(e);
+            }
+        })
+    }
+    static postAdmin(email, password, firstName, lastName, status) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const res = await axios.post(url, { email: email, password: password, firstName: firstName, lastName: lastName, status: status });
                 const obj = res.data;
                 console.log("res:");
                 console.log(res);

@@ -25,13 +25,53 @@ router.get('/',async (req, res) => {
         })
 })
 
+router.get('/:id',async (req, res) => {
+    await Database.open('../domstroy.sqlite')
+        .then(async db => {
+            const sql = `SELECT * FROM Admins WHERE id = (?)`;
+            let result = await db.all(sql,[req.params.id]);
+
+            db.close();
+
+            res.send(result);
+        })
+        .catch((e) => {
+            if(e)
+            {
+                console.log(e.message);
+                res.status(500);
+                return false;
+            }
+        })
+})
+
+router.post('/getAdmin',async (req, res) => {
+    await Database.open('../domstroy.sqlite')
+        .then(async db => {
+            const sql = `SELECT * FROM Admins WHERE email = (?)`;
+            let result = await db.all(sql,[req.body.email]);
+
+            db.close();
+
+            res.send(result);
+        })
+        .catch((e) => {
+            if(e)
+            {
+                console.log(e.message);
+                res.status(500);
+                return false;
+            }
+        })
+})
+
 //POST
 router.post('/',async (req, res) => {
     await Database.open('../domstroy.sqlite')
         .then(async db => {
             const hashedPassword = await hashPassword(req.body.password);
-            const sql = `INSERT INTO Admins(email, password,firstName,lastName) VALUES (?, ?, ?, ?)`;
-            let result = await db.run(sql,[req.body.email, hashedPassword, req.body.firstName, req.body.lastName]);
+            const sql = `INSERT INTO Admins(email, password,firstName,lastName,status) VALUES (?, ?, ?, ?, ?)`;
+            let result = await db.run(sql,[req.body.email, hashedPassword, req.body.firstName, req.body.lastName, req.body.status]);
 
             db.close();
 

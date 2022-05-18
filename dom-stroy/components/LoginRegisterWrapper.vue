@@ -58,6 +58,10 @@
                                     <label>Подтвердите пароль</label>
                                     <input type="password" placeholder="Подтвердите пароль" v-model="registrationData.password2">
                                 </div>
+                                <div class="col-md-6">
+                                  <label>Статус модератора</label>
+                                  <input type="number" min="0" max="1" placeholder="0 - модератор / 1 - админ" v-model="registrationData.isModerator">
+                                </div>
                                 <div class="col-12 mt-3">
                                     <button class="btn btn-primary btn-secondary-hover" type="button" @click="register">Зарегистрироваться</button>
                                 </div>
@@ -85,7 +89,8 @@
             lastName: '',
             email: '',
             password1: '',
-            password2: ''
+            password2: '',
+            isModerator: '',
           }
         }
       },
@@ -111,7 +116,8 @@
               || !this.registrationData.password1
               || !this.registrationData.password2
               || !this.registrationData.firstName
-              || !this.registrationData.lastName) {
+              || !this.registrationData.lastName
+              || this.registrationData.isModerator === '') {
             alert('Введите валидные данные!');
             return;
           }
@@ -120,12 +126,14 @@
             alert('Введенные пароли не одинаковые!');
           }
 
-          const res = await AdminService.postAdmin(this.registrationData.email, this.registrationData.password1, this.registrationData.firstName, this.registrationData.lastName);
+          const res = await AdminService.postAdmin(this.registrationData.email, this.registrationData.password1, this.registrationData.firstName, this.registrationData.lastName, this.registrationData.isModerator);
           console.log(res);
+
+          const curAdmin = await AdminService.getAdminsEmail(this.registrationData.email);
 
           if(res)
           {
-            await this.$router.push('/admin-panel');
+            await this.$router.push('/admin-panel/' + curAdmin.id);
           } else {
             alert('Не удалось зарегистрироваться!');
           }

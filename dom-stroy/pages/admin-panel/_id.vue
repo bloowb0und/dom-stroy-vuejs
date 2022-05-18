@@ -1,22 +1,31 @@
 <template>
   <div class="admin-panel">
-    <AdminMenu />
-    <AdminMainContent />
+    <AdminMenu :id="admin.id" />
+    <AdminMainContent :name="admin.firstName" />
   </div>
 </template>
 
 <script>
-export default {
+import AdminService from "@/AdminService";
 
+export default {
   components: {
     AdminMenu: () => import('@/components/AdminMenu'),
     AdminMainContent: () => import('@/components/AdminMainContent'),
+  },
+  data() {
+    return {
+      admin: {},
+    }
   },
   head() {
     return {
       title: 'Админ Панель'
     }
   },
+  async created() {
+    this.admin = await AdminService.getAdminsId(this.$route.params.id);
+  }
 }
 </script>
 

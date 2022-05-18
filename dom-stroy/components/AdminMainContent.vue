@@ -8,7 +8,7 @@
       </div>
     </header>
     <main>
-      <h1>Добро пожаловать в админ-панель</h1>
+      <h1>Добро пожаловать в админ-панель, {{ this.name }}</h1>
       <h4>В меню слева выберите интересующий раздел:</h4>
       <div class="pages">
         <p>Данные - изменение данных в каталоге</p>
@@ -20,7 +20,10 @@
 
 <script>
 export default {
-  name: "AdminMainContent"
+  name: "AdminMainContent",
+  props: [
+      'name',
+  ]
 }
 </script>
 

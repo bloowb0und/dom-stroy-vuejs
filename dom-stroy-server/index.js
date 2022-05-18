@@ -16,6 +16,9 @@ app.use('/api/admins', admins);
 const requests = require('./routes/api/requests.js');
 app.use('/api/requests', requests);
 
+const logs = require('./routes/api/logs.js');
+app.use('/api/logs', logs);
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

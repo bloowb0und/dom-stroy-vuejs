@@ -10,7 +10,7 @@ router.get('/',async (req, res) => {
             //const sql = 'SELECT title,desc,image FROM Projects';
             const sql = `SELECT Requests.id, Requests.fullname, Requests.phone, Requests.date, Projects.title FROM Requests INNER JOIN Projects on Requests.project_id = Projects.id`;
             let result = await db.all(sql, []);
-            //console.log(result)
+            console.log(result)
 
             db.close();
 

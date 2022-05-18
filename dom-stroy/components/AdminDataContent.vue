@@ -78,99 +78,101 @@
         </form>
       </div>
       <hr>
-      <h1>Изменение дома</h1>
-      <div class="form-wrapper">
-        <form id="contact-form">
-          <div class="row row-10">
-            <div class="col-12 section-space--bottom--20">
-              <select style="padding: 0 25px" v-model="selectedChangePlace">
-                <option disabled value="" selected="selected">Выберите дом</option>
-                <option v-for="place in places" :value="place">{{ place.title }}</option>
-              </select>
+      <div v-if="admin.status === 1">
+        <h1>Изменение дома</h1>
+        <div class="form-wrapper">
+          <form id="contact-form">
+            <div class="row row-10">
+              <div class="col-12 section-space--bottom--20">
+                <select style="padding: 0 25px" v-model="selectedChangePlace">
+                  <option disabled value="" selected="selected">Выберите дом</option>
+                  <option v-for="place in places" :value="place">{{ place.title }}</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="row row-10">
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_title" type="text" placeholder="Название" required v-model="selectedChangePlace.title">
+            <div class="row row-10">
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_title" type="text" placeholder="Название" required v-model="selectedChangePlace.title">
+              </div>
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_technologies" type="text" placeholder="Технологии" required
+                       v-model="selectedChangePlace.technologies">
+              </div>
             </div>
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_technologies" type="text" placeholder="Технологии" required
-                     v-model="selectedChangePlace.technologies">
+            <div class="row row-10">
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_img" type="text" placeholder="Путь к картинке" required v-model="selectedChangePlace.images_folder">
+              </div>
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_location" type="text" placeholder="Локация" required v-model="selectedChangePlace.location">
+              </div>
             </div>
-          </div>
-          <div class="row row-10">
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_img" type="text" placeholder="Путь к картинке" required v-model="selectedChangePlace.images_folder">
+            <div class="row row-10">
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_area" type="number" placeholder="Площадь" required v-model="selectedChangePlace.area">
+              </div>
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_budget" type="number" placeholder="Бюджет" required v-model="selectedChangePlace.budget">
+              </div>
             </div>
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_location" type="text" placeholder="Локация" required v-model="selectedChangePlace.location">
+            <div class="row row-10">
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_architect" type="text" placeholder="Архитектор" required v-model="selectedChangePlace.architect">
+              </div>
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_contractor" type="text" placeholder="Подрядчик" required v-model="selectedChangePlace.contractor">
+              </div>
             </div>
-          </div>
-          <div class="row row-10">
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_area" type="number" placeholder="Площадь" required v-model="selectedChangePlace.area">
+            <div class="row row-10">
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_startDate" type="text" placeholder="Дата начала" required v-model="selectedChangePlace.start_date">
+              </div>
+              <div class="col-md-6 col-12 section-space--bottom--20">
+                <input name="con_endDate" type="text" placeholder="Дата конца" required v-model="selectedChangePlace.end_date">
+              </div>
             </div>
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_budget" type="number" placeholder="Бюджет" required v-model="selectedChangePlace.budget">
+            <div class="row row-10">
+              <div class="col-12 section-space--bottom--20">
+                <input name="con_desc" type="text" placeholder="Короткое описание" required v-model="selectedChangePlace.desc">
+              </div>
             </div>
-          </div>
-          <div class="row row-10">
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_architect" type="text" placeholder="Архитектор" required v-model="selectedChangePlace.architect">
+            <div class="row row-10">
+              <div class="col-12 section-space--bottom--20">
+                <input name="con_text1" type="text" placeholder="Текст 1" required v-model="selectedChangePlace.text1">
+              </div>
             </div>
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_contractor" type="text" placeholder="Подрядчик" required v-model="selectedChangePlace.contractor">
+            <div class="row row-10">
+              <div class="col-12 section-space--bottom--20">
+                <input name="con_text2" type="text" placeholder="Текст 2" required v-model="selectedChangePlace.text2">
+              </div>
             </div>
-          </div>
-          <div class="row row-10">
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_startDate" type="text" placeholder="Дата начала" required v-model="selectedChangePlace.start_date">
+            <div class="row row-10">
+              <div class="col-12 section-space--bottom--20">
+                <input name="con_text3" type="text" placeholder="Текст 3" required v-model="selectedChangePlace.text3">
+              </div>
             </div>
-            <div class="col-md-6 col-12 section-space--bottom--20">
-              <input name="con_endDate" type="text" placeholder="Дата конца" required v-model="selectedChangePlace.end_date">
+            <div class="col-12">
+              <button @click="change" type="button" :disabled="!selectedChangePlace">Изменить</button>
             </div>
-          </div>
-          <div class="row row-10">
-            <div class="col-12 section-space--bottom--20">
-              <input name="con_desc" type="text" placeholder="Короткое описание" required v-model="selectedChangePlace.desc">
+          </form>
+        </div>
+        <hr>
+        <h1>Удаление дома</h1>
+        <div class="form-wrapper pb-4">
+          <form id="contact-form">
+            <div class="row row-10">
+              <div class="col-12 section-space--bottom--20">
+                <select style="padding: 0 25px" v-model="selectedDelPlace">
+                  <option disabled value="" selected="selected">Выберите дом</option>
+                  <option v-for="place in places" :value="place">{{ place.title }}</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="row row-10">
-            <div class="col-12 section-space--bottom--20">
-              <input name="con_text1" type="text" placeholder="Текст 1" required v-model="selectedChangePlace.text1">
+            <div class="col-12">
+              <button @click="del" :disabled="!selectedDelPlace" type="button">Удалить</button>
             </div>
-          </div>
-          <div class="row row-10">
-            <div class="col-12 section-space--bottom--20">
-              <input name="con_text2" type="text" placeholder="Текст 2" required v-model="selectedChangePlace.text2">
-            </div>
-          </div>
-          <div class="row row-10">
-            <div class="col-12 section-space--bottom--20">
-              <input name="con_text3" type="text" placeholder="Текст 3" required v-model="selectedChangePlace.text3">
-            </div>
-          </div>
-          <div class="col-12">
-            <button @click="change" type="button" :disabled="!selectedChangePlace">Изменить</button>
-          </div>
-        </form>
-      </div>
-      <hr>
-      <h1>Удаление дома</h1>
-      <div class="form-wrapper pb-4">
-        <form id="contact-form">
-          <div class="row row-10">
-            <div class="col-12 section-space--bottom--20">
-              <select style="padding: 0 25px" v-model="selectedDelPlace">
-                <option disabled value="" selected="selected">Выберите дом</option>
-                <option v-for="place in places" :value="place">{{ place.title }}</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-12">
-            <button @click="del" :disabled="!selectedDelPlace" type="button">Удалить</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </main>
   </div>
@@ -178,6 +180,7 @@
 
 <script>
 import ProjectService from "@/ProjectService";
+import LogsService from "@/LogsService";
 
 export default {
   name: "AdminDataContent",
@@ -204,12 +207,16 @@ export default {
       selectedDelPlace: '',
     }
   },
+  props: [
+    'admin',
+  ],
   methods: {
     async add() {
       let isEmpty = Object.values(this.addPlaceDetails).some(obj => obj === '');
 
       if(!isEmpty) {
         await ProjectService.postProject(this.addPlaceDetails.title, this.addPlaceDetails.desc, this.addPlaceDetails.location, this.addPlaceDetails.area, this.addPlaceDetails.budget, this.addPlaceDetails.architect, this.addPlaceDetails.contractor, this.addPlaceDetails.start_date, this.addPlaceDetails.end_date, this.addPlaceDetails.text1, this.addPlaceDetails.text2, this.addPlaceDetails.text3, this.addPlaceDetails.images_folder, this.addPlaceDetails.technologies);
+        await LogsService.postLog(this.admin.id, `Added ${this.addPlaceDetails.title} building.`)
         this.$router.go();
       }
       else {
@@ -221,12 +228,14 @@ export default {
 
       if(!isEmpty) {
         await ProjectService.putProject(this.selectedChangePlace.title, this.selectedChangePlace.desc, this.selectedChangePlace.location, this.selectedChangePlace.area, this.selectedChangePlace.budget, this.selectedChangePlace.architect, this.selectedChangePlace.contractor, this.selectedChangePlace.start_date, this.selectedChangePlace.end_date, this.selectedChangePlace.text1, this.selectedChangePlace.text2, this.selectedChangePlace.text3, this.selectedChangePlace.images_folder, this.addPlaceDetails.technologies, this.selectedChangePlace.id);
+        await LogsService.postLog(this.admin.id, `Changed ${this.selectedChangePlace.title} building.`);
         this.$router.go();
       }
     },
     async del() {
       console.log(this.selectedDelPlace);
       await ProjectService.deleteProject(this.selectedDelPlace.id);
+      await LogsService.postLog(this.admin.id, `Deleted ${this.selectedDelPlace.title} building.`);
       this.$router.go();
     }
   },
