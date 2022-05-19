@@ -103,9 +103,11 @@
 
           const res = await AdminService.checkAdminData(this.loginData.email, this.loginData.password);
 
+          const curAdmin = await AdminService.getAdminsEmail(this.loginData.email);
+
           if(res)
           {
-            await this.$router.push('/admin-panel');
+            await this.$router.push('/admin-panel/' + curAdmin.id);
           } else {
             alert('Введены неверные данные!');
           }
